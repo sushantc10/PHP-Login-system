@@ -2,7 +2,7 @@
 	//define config
 	define('__CONFIG__',true);
 	require_once('inc/config.php');
-	ForceDashboardLogin();
+	Page::ForceDashboardLogin();
 ?>
 
 <!DOCTYPE html>

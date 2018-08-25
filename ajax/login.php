@@ -9,16 +9,14 @@
 		$return = [];
 		$email = Filter::String($_POST['email']);
 		$password = $_POST['password'];
-		$findUser = $con->prepare("select user_id,password from users where email= :email limit 1");
-		$findUser->bindParam(':email',$email,PDO::PARAM_STR);
-		$findUser->execute();
-
-		if($findUser->rowCount() == 1){
+		$user_found = User::Find($email,true);
+		$user_found;
+		if($user_found){
 
 			// user exists
-			$User = $findUser->fetch(PDO::FETCH_ASSOC);
-			$user_id = (int) $User['user_id'];
-			$hash = (string) $User['password'];
+			//$User = $user_found->fetch(PDO::FETCH_ASSOC);
+			$user_id = (int) $user_found['user_id'];
+			 $hash = (string) $user_found['password'];
 
 			$_SESSION['user_id'] = $user_id;
 			$return['redirect'] = 'php_login_system/dashboard.php';

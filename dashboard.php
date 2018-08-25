@@ -5,7 +5,9 @@
 	echo $_SESSION['user_id'].' is your user id';
 
 	
-	ForceLogin()
+	Page::ForceLogin();
+//echo gettype($_SESSION['user_id']);
+	$User = new User($_SESSION['user_id']);
 	
 ?>
 
@@ -25,7 +27,8 @@
 <body>
 
 	<div class = "uk-section uk-container">
-		Dashboard Here
+		<h2>Dashboard</h2>
+		<p>Hello <?php $User->email;?>, Your registered at <?php echo $User->reg_time;?></p>
 	</div>
 
 <?php require_once('footer.php'); ?>
